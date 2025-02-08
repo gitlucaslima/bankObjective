@@ -22,7 +22,7 @@ public class TransacaoResource {
 
     @PostMapping()
     @Operation(summary = "Nova transação", description = "Realiza uma nova transação")
-    public TransacaoResponseDto novaTransacao(@RequestBody @Valid TransacaoRequestDto transacaoRequestDto) throws Exception {
+    public TransacaoResponseDto novaTransacao(@RequestBody TransacaoRequestDto transacaoRequestDto) throws Exception {
         return transacaoService.novaTransacao(transacaoRequestDto);
     }
 

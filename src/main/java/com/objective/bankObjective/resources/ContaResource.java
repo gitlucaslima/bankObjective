@@ -1,4 +1,4 @@
-package com.objective.bankObjective.controllers;
+package com.objective.bankObjective.resources;
 
 import com.objective.bankObjective.domain.models.dtos.ContaRequestDto;
 import com.objective.bankObjective.domain.models.dtos.ContaResponseDto;
@@ -23,13 +23,13 @@ public class ContaResource {
 
     @PostMapping
     @Operation(summary = "Nova conta", description = "Cria uma nova conta")
-    public ContaResponseDto salvar(@Valid @RequestBody ContaRequestDto contaRequestDto) throws AccountExistingException, NegativeBalanceException {
+    public ContaResponseDto salvar(@RequestBody @Valid ContaRequestDto contaRequestDto) throws AccountExistingException, NegativeBalanceException {
         return contaService.criarConta(contaRequestDto);
     }
 
     @GetMapping()
     @Operation(summary = "Buscar conta", description = "Busca uma conta pelo número")
-    public ResponseEntity<ContaResponseDto> find(@Valid @RequestParam(name = "numero_conta") Long numeroConta) throws AccountNotExistingException {
+    public ResponseEntity<ContaResponseDto> find(@RequestParam(name = "numero_conta") @Valid Long numeroConta) throws AccountNotExistingException {
         return ResponseEntity.ok(contaService.find(numeroConta));
     }
 
