@@ -1,4 +1,11 @@
 package com.objective.bankObjective.domain.models.dtos;
 
-public record TransacaoResponseDto() {
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.math.BigDecimal;
+
+public record TransacaoResponseDto(
+        @JsonProperty("numero_conta") Long numeroConta,
+        BigDecimal valor
+) {
 }

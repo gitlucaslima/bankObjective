@@ -15,9 +15,7 @@ public record TransacaoRequestDto(
         @NotNull(message = "O número da conta não pode ser nulo")
         @Min(value = 1, message = "O número da conta deve ser maior que zero")
         Long numeroConta,
-
-        @NotNull(message = "O valor da transação é obrigatório")
-        @Min(value = 1, message = "O valor da transação deve ser maior que zero")
+        @Min(1)
         BigDecimal valor
 ) {
 }
