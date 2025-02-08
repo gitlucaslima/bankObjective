@@ -1,6 +1,6 @@
-# 📌 BancoObjective API
+# 📌 API de Gestão Bancária - Teste Técnico (Pleno)
 
-API para gestão bancária desenvolvida em **Spring Boot**, utilizando **MongoDB** como banco de dados.
+API para gestão bancária desenvolvida em Spring Boot, utilizando MongoDB como banco de dados.
 Este projeto inclui transações financeiras com diferentes formas de pagamento e aplicação de taxas conforme o método de pagamento escolhido.
 
 ---
@@ -193,12 +193,12 @@ Para parar os containers do Docker, execute:
 
 Para parar apenas o container da API:
 ```sh
- docker stop bankobjective-api
+ docker stop api
 ```
 
 Para parar apenas o banco MongoDB:
 ```sh
- docker stop bankobjective-mongo
+ docker stop mongodb
 ```
 
 ---
