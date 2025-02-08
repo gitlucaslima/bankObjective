@@ -1,4 +1,4 @@
-package com.objective.bankObjective.domain.repository;
+package com.objective.bankObjective.infrastructure.repository;
 
 import com.objective.bankObjective.domain.models.Conta;
 import org.springframework.data.mongodb.repository.MongoRepository;
