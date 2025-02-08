@@ -1,0 +1,43 @@
+services:
+  api:
+    build: .
+    container_name: api
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_APPLICATION_NAME=bankObjective
+      - SPRING_DATA_MONGODB_URI=mongodb://admin:secret@mongodb:27017/bankObjective?authSource=admin
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    networks:
+      - bank-network
+
+  mongodb:
+    image: mongo:6.0
+    container_name: db
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: bankObjective
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: secret
+    volumes:
+      - mongodb_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.runCommand('ping').ok"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    networks:
+      - bank-network
+
+volumes:
+  mongodb_data:
+    driver: local
+
+networks:
+  bank-network:
+    driver: bridge

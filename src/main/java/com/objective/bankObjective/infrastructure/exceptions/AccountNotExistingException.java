@@ -1,12 +1,11 @@
 package com.objective.bankObjective.infrastructure.exceptions;
 
-import org.apache.coyote.BadRequestException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(HttpStatus.CONFLICT)
-public class AccountExistingException extends BadRequestException {
-    public AccountExistingException() {
-        super("Não foi possível criar esta conta");
+@ResponseStatus(HttpStatus.NOT_FOUND)
+public class AccountNotExistingException extends Exception  {
+    public AccountNotExistingException() {
+        super("Não foi possível encontrar esta conta");
     }
 }
