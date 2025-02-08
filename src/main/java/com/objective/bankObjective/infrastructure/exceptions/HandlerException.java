@@ -87,4 +87,17 @@ public class HandlerException {
 
         return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(customException);
     }
+
+    @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<CustomException> handleInvalidArgument(IllegalArgumentException exception) {
+
+        CustomException customException = CustomException.builder()
+                .status(HttpStatus.NOT_ACCEPTABLE)
+                .message(exception.getMessage())
+                .errors(null)
+                .build();
+
+        return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(customException);
+    }
 }
