@@ -27,6 +27,10 @@ public class TransacaoService {
     @Transactional
     public TransacaoResponseDto novaTransacao(TransacaoRequestDto transacaoRequest) throws NotFoundPaymentTypeException, InsufficientBalanceException, AccountNotExistingException {
 
+        if (transacaoRequest.valor().compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("O valor da transação deve ser maior que zero");
+        }
+
         var contaEncontrada = contaRepository.findByNumero(transacaoRequest.numeroConta())
                 .orElseThrow(AccountNotExistingException::new);
 
@@ -36,10 +40,6 @@ public class TransacaoService {
 
         if (estrategiaDePagamento == null) {
             throw new NotFoundPaymentTypeException();
-        }
-
-        if (transacaoRequest.valor().compareTo(BigDecimal.ZERO) <= 0) {
-            throw new IllegalArgumentException("O valor da transação deve ser maior que zero");
         }
 
         var valorFinal = estrategiaDePagamento.processarPagamento(transacaoRequest.valor());
