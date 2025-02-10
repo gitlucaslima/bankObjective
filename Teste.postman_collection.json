@@ -1,0 +1,111 @@
+{
+	"info": {
+		"_postman_id": "2ed343eb-da65-42fd-8a03-60c26aedb080",
+		"name": "Teste Tecnico Objective - Postman Settings",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "31086810",
+		"_collection_link": "https://interstellar-equinox-253686.postman.co/workspace/New-Team-Workspace~6d3e64e8-852e-4aee-a2dd-6f070051e32d/collection/31086810-2ed343eb-da65-42fd-8a03-60c26aedb080?action=share&source=collection_link&creator=31086810"
+	},
+	"item": [
+		{
+			"name": "conta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var template = `\r",
+							"<style type=\"text/css\">\r",
+							"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+							"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+							"    .tftable tr {background-color:#ffffff;}\r",
+							"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+							"    .tftable tr:hover {background-color:#e0ffff;}\r",
+							"</style>\r",
+							"\r",
+							"<table class=\"tftable\" border=\"1\">\r",
+							"    <tr>\r",
+							"        <th>Status</th>\r",
+							"        <th>Message</th>\r",
+							"        <th>Errors</th>\r",
+							"    </tr>\r",
+							"    <tr>\r",
+							"        <td>{{response.status}}</td>\r",
+							"        <td>{{response.message}}</td>\r",
+							"        <td>{{response.errors}}</td>\r",
+							"    </tr>\r",
+							"</table>\r",
+							"`;\r",
+							"\r",
+							"function constructVisualizerPayload() {\r",
+							"    return { response: pm.response.json() }\r",
+							"}\r",
+							"\r",
+							"pm.visualizer.set(template, constructVisualizerPayload());"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " { \r\n    \"numero_conta\": 1, \r\n    \"saldo\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/conta"
+			},
+			"response": []
+		},
+		{
+			"name": "transacao",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n    \"forma_pagamento\":\"p\", \r\n    \"numero_conta\": 1, \r\n    \"valor\": 0 \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/transacao"
+			},
+			"response": []
+		},
+		{
+			"name": "conta",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/conta?numero_conta=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"conta"
+					],
+					"query": [
+						{
+							"key": "numero_conta",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
